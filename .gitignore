@@ -1,6 +1,11 @@
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
+*.ipr
+*.iws
+*.iml
+target
+.svn
+APDescription.txt
+MTPs-*.*
+pom.xml.*
+release.properties
+.DS_Store
+.idea
