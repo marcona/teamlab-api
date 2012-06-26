@@ -5,6 +5,7 @@ import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -57,6 +58,52 @@ public class TeamLabApi {
         client.getParams().setParameter("http.useragent", "Test Client");
 
         GetMethod getMethod = new GetMethod(host + "/api/1.0/event");
+        System.out.println("token = " + token);
+        getMethod.setRequestHeader("Authorization",token);
+
+        try {
+            int returnCode = client.executeMethod(getMethod);
+
+            if (returnCode == HttpStatus.SC_NOT_IMPLEMENTED) {
+                System.err.println("The Post method is not implemented by this URI");
+                // still consume the response body
+                return getMethod.getResponseBodyAsString();
+            } else {
+                return readResponseStream(getMethod.getResponseBodyAsStream());
+            }
+        } finally {
+            getMethod.releaseConnection();
+        }
+    }
+
+    public String postEvent(String host, String content) throws IOException {
+        HttpClient client = new HttpClient();
+        client.getParams().setParameter("http.useragent", "Test Client");
+
+        PostMethod method = new PostMethod(host + "/api/1.0/event");
+        method.setRequestHeader("Authorization",token);
+
+        method.setRequestEntity(new StringRequestEntity(content,"application/xml","utf-8"));
+        try {
+            int returnCode = client.executeMethod(method);
+
+            if (returnCode == HttpStatus.SC_NOT_IMPLEMENTED) {
+                System.err.println("The Post method is not implemented by this URI");
+                // still consume the response body
+                return method.getResponseBodyAsString();
+            } else {
+                return readResponseStream(method.getResponseBodyAsStream());
+            }
+        } finally {
+            method.releaseConnection();
+        }
+    }
+
+    public String getEvent(String feedId) throws IOException {
+        HttpClient client = new HttpClient();
+        client.getParams().setParameter("http.useragent", "Test Client");
+
+        GetMethod getMethod = new GetMethod(host + "/api/1.0/event/"+feedId);
         System.out.println("token = " + token);
         getMethod.setRequestHeader("Authorization",token);
 

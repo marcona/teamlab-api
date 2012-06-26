@@ -1,0 +1,41 @@
+<result>
+    <count>1</count>
+    <startIndex>0</startIndex>
+    <status>0</status>
+    <statusCode>200</statusCode>
+    <response>
+        <id>41970</id>
+        <title>Livraison des frameworks codjo 2.21</title>
+        <created>2012-06-07T16:26:26.0000000+02:00</created>
+        <updated>2012-06-07T16:26:26.0000000+02:00</updated>
+        <type>1</type>
+        <createdBy>
+            <id>a6e06d72-80fd-48a0-9a23-def1a88f2e2d</id>
+            <displayName>Arnaud Marconnet</displayName>
+            <title></title>
+            <avatarSmall>
+                http://data.teamlab.com/07/05/82/userphotos/a6e06d72-80fd-48a0-9a23-def1a88f2e2d_size_64-64.jpeg
+            </avatarSmall>
+        </createdBy>
+        <text>&lt;p&gt;Bonjour,&lt;/p&gt;
+            &lt;p&gt;la version 2.21 du framework&amp;nbsp;est disponible sur le repository binaire codjo.&lt;br /&gt;
+            &lt;br /&gt;
+            Cela a &amp;eacute;t&amp;eacute; assez fastidieux (m&amp;ecirc;me si on a reussi a faire marcher le
+            deploiement avec maven), donc merci de nous faire remonter les &amp;eacute;ventuels dysfonctionnements.&lt;br
+            /&gt;
+            &lt;br /&gt;
+            Cordialement,&lt;/p&gt;
+            &lt;p&gt;Codjo Team (du 8eme)&lt;/p&gt;</text>
+    </response>
+
+
+    <event>
+        <title>Livraison des frameworks codjo 2.22</title>
+        <type>1</type>
+        <text>&lt;p&gt;Bonjour,&lt;/p&gt;
+            &lt;p&gt;la version 2.22 du framework&amp;nbsp;est disponible sur le repository binaire codjo.&lt;br /&gt;
+            &lt;br /&gt;
+            Cordialement,&lt;/p&gt;
+            &lt;p&gt;Codjo Team (du 8eme)&lt;/p&gt;</text>
+    </event>
+</result>

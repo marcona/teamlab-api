@@ -21,5 +21,21 @@ public class TeamLabApiTest {
 
         String allEvents = api.getAllEvents();
         System.out.println("allEvents = " + allEvents);
+
+        String event = api.getEvent("41970");
+        System.out.println("event = " + event);
+
+        String content="  <feed>\n" +
+                "        <Title>Livraison du frameworks codjo 2.22</Title>\n" +
+                "        <Type>1</Type>\n" +
+                "        <Text>&lt;p&gt;Bonjour,&lt;/p&gt;\n" +
+                "            &lt;p&gt;la version 2.22 du framework&amp;nbsp;est disponible sur le repository binaire codjo.&lt;br /&gt;\n" +
+                "            &lt;br /&gt;\n" +
+                "            Cordialement,&lt;/p&gt;\n" +
+                "            &lt;p&gt;Codjo Team (du 8eme)&lt;/p&gt;</Text>\n" +
+                "    </feed>";
+        String result = api.postEvent("http://team.codjo.net", content);
+        System.out.println("result = " + result);
+
     }
 }
