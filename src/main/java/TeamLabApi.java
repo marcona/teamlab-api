@@ -76,14 +76,16 @@ public class TeamLabApi {
         }
     }
 
-    public String postEvent(String host, String content) throws IOException {
+    public String postEvent(String host, String title, String type, String content) throws IOException {
         HttpClient client = new HttpClient();
         client.getParams().setParameter("http.useragent", "Test Client");
 
         PostMethod method = new PostMethod(host + "/api/1.0/event");
         method.setRequestHeader("Authorization",token);
-
-        method.setRequestEntity(new StringRequestEntity(content,"application/xml","utf-8"));
+          method.setParameter("title",title);
+          method.setParameter("type",type);
+          method.setParameter("content",content);
+        //method.setRequestEntity(new StringRequestEntity(content,"application/xml","utf-8"));
         try {
             int returnCode = client.executeMethod(method);
 
