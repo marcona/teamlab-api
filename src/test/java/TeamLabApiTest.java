@@ -1,7 +1,5 @@
 import org.junit.Test;
 
-import java.io.IOException;
-
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
@@ -16,7 +14,11 @@ public class TeamLabApiTest {
 
     @Test
     public void test_connection() throws Exception {
-        TeamLabApi api = new TeamLabApi("http://XX", "XXX", "XXX");
+        TeamLabApi api = new TeamLabApi("http://XXX",
+                                        "XXTeamLabAccount",
+                                        "XXTeamLabPassword",
+                                        new ProxyInformation("XXProxyHost", 80, "XXProxyUser", "XXProxyPassword")
+        );
         assertNotNull(api.getToken());
 
         String allEvents = api.getAllEvents();
@@ -25,13 +27,13 @@ public class TeamLabApiTest {
         String event = api.getEvent("41970");
         System.out.println("event = " + event);
 
-        String content="&lt;p&gt;Bonjour,&lt;/p&gt;\n" +
-                "            &lt;p&gt;la version 2.22 du framework&amp;nbsp;est disponible sur le repository binaire codjo.&lt;br /&gt;\n" +
-                "            &lt;br /&gt;\n" +
-                "            Cordialement,&lt;/p&gt;\n" +
-                "            &lt;p&gt;Codjo Team (du 8eme)&lt;/p&gt;";
-        String result = api.postEvent("http://team.codjo.net", "[Test API REST]] Livraison du frameworks codjo 2.22","1",content);
-        System.out.println("result = " + result);
-
+        String content="Bonjour,\n" +
+                "            la version 2.22 du framework est disponible sur le repository binaire codjo.\n" +
+                "            \n" +
+                "            Cordialement,\n" +
+                "            Codjo Team (du 8eme)";
+        
+        //String result = api.postEvent("[Test API REST]] Livraison du frameworks codjo 2.22","1",content);
+        //System.out.println("result = " + result);
     }
 }

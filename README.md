@@ -11,5 +11,9 @@ The aim is to validate the TeamLab api (http://api.teamlab.com/) :
 This is done in the unit test TeamLabApiTest (after filling the constructor paramaters)
  
  ```java
-    TeamLabApi api = new TeamLabApi("http://{TEAMLAB_INSTANCE_URL}", {TEAMLAB_USER_NAME}, {TEAMLAB_PASSWORD});
- ```
+        TeamLabApi api = new TeamLabApi("http://TEAMLAB_URL",
+                                        "TEAMLAB_ACCOUNT",
+                                        "TEAMLAB_PASSWORD",
+                                        new ProxyInformation("PROXY_HOST", 80, "PROXY_USER", "PROXY_PASSWORD")
+        );
+  ```
