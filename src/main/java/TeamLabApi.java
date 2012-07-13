@@ -13,8 +13,7 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 
 /**
- * Created with IntelliJ IDEA. User: marcona Date: 26/06/12 Time: 22:08 To change this template use File | Settings |
- * File Templates.
+ * TODO Copied from  https://github.com/marcona/teamlab-api
  */
 public class TeamLabApi {
     private String host;
@@ -44,14 +43,6 @@ public class TeamLabApi {
     }
 
 
-    public String getAllEvents() throws IOException {
-        GetMethod getMethod = new GetMethod(host + "/api/1.0/event");
-        getMethod.setRequestHeader("Authorization", token);
-
-        return executeAndTraceResponse(httpClient, getMethod);
-    }
-
-
     public String postEvent(String title, String type, String content) throws IOException {
         PostMethod method = new PostMethod(host + "/api/1.0/event");
         method.setRequestHeader("Authorization", token);
@@ -63,8 +54,21 @@ public class TeamLabApi {
     }
 
 
-    public String getEvent(String feedId) throws IOException {
+    public String getToken() {
+        return token;
+    }
+
+
+    String getEvent(String feedId) throws IOException {
         GetMethod getMethod = new GetMethod(host + "/api/1.0/event/" + feedId);
+        getMethod.setRequestHeader("Authorization", token);
+
+        return executeAndTraceResponse(httpClient, getMethod);
+    }
+
+
+    String getAllEvents() throws IOException {
+        GetMethod getMethod = new GetMethod(host + "/api/1.0/event");
         getMethod.setRequestHeader("Authorization", token);
 
         return executeAndTraceResponse(httpClient, getMethod);
@@ -76,11 +80,6 @@ public class TeamLabApi {
         xstream.alias("result", Result.class);
         Result result = (Result)xstream.fromXML(inputStream);
         return result.getToken();
-    }
-
-
-    public String getToken() {
-        return token;
     }
 
 
@@ -154,6 +153,7 @@ public class TeamLabApi {
             if (br != null) {
                 br.close();
             }
+            responseBodyAsStream.close();
         }
         return builder.toString();
     }
